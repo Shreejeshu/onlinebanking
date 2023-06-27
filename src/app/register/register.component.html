@@ -1,0 +1,64 @@
+<form [formGroup]="registerForm">
+<div class="container w-50 p-4 " style="background-color: rgb(29,49,101); margin-top: 120px; margin-left: 80px;"id="d"
+>
+    <h1 class="text-center p-3">sign in</h1>
+    <div>
+        <input formControlName="acno" name="acno"id="a2" type="text" placeholder="enteraccno" class="form-control mt-3">
+    </div>
+    <div *ngIf="(this.registerForm.get('acno')?.errors)&&(this.registerForm.get('acno')?.touched)">
+      <p class="text-danger">Must contain numbers only</p>  
+    </div>
+    <div>
+        <input formControlName="uname" name="uname"type="text"placeholder="username" class="form-control mt-3">
+    </div>
+    <div *ngIf="(this.registerForm.get('uname')?.errors)&&(this.registerForm.get('uname')?.touched)">
+        <p class="text-danger">Must contain character only</p>  
+      </div>
+    <div>
+        <input formControlName="psw" name="psw"id="p2"type="password"placeholder="enterpassword" class="form-control mt-3">
+    </div>
+    <div *ngIf="(this.registerForm.get('psw')?.errors)&&(this.registerForm.get('psw')?.touched)">
+        <p class="text-danger">Must contain numbers and charaters</p>  
+      </div>
+    <div>
+        <input formControlName="cpsw" name="cpsw" id="p2"type="password"placeholder="cform password" class="form-control mt-3">
+    </div>
+   
+    <div *ngIf="pswCheck">
+        <h5 class="text-danger">password doesnt match</h5>
+    </div>
+    <button (click)="signup()" type="submit" class="bg-primary mt-4 me-5">signup</button>
+  </div>
+</form>
+
+<div class="col-2 container w-25" style="margin-left:900px; margin-bottom:500px;" id="d">
+    <img style="height: 500px; margin-top: -429px; margin-left: -40px;" src="https://i.postimg.cc/V6JcBkD2/17321-8-digital-banking-features-that-make-customers-financial-lives-easier.webp" alt="">
+</div>
+
+
+
+
+
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+    </div>
+    <div class="dropdown mt-3">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

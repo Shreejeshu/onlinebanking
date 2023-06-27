@@ -1,0 +1,181 @@
+<div class="row">
+  <div [ngClass]="acno1?'s':''" class="col-3 mb-3" style="background-color:rgb(147, 9, 9)">
+    <div class="col-3 mb-0 w-100 fs-5" style="background-color:rgb(147, 9, 9)">
+      <div class="list-group border-0 w-100 text-center" style="background-color:rgb(147, 9, 9); font-size:20px;">
+
+        <button (click)="acessUser()" type="button" class="list-group-item list-group-item-action "
+          data-bs-toggle="modal" data-bs-target="#exampleModal"
+          style="background-color: rgb(147, 9, 9); color: white; border: none;">
+          View profile
+          <i class="fa-solid fa-user me-2 text-warning fa-2x"></i>
+          <hr>
+        </button>
+        <button (click)="checkBalance()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample" class="list-group-item list-group-item-action text-white" type="button"
+          style="background-color:rgb(147, 9, 9); border:none;">Balance Enquiry
+          <i class="fa-solid fa-sack-dollar ms-2 text-warning fa-2x"></i>
+        </button>
+        <hr class="text-white">
+        <button type="button" class="list-group-item list-group-item-action text-white" data-bs-toggle="modal"
+          data-bs-target="#exampleModal1" style="background-color:rgb(147, 9, 9); border: none; ">Money Transfer
+          <i class="fa-solid fa-money-bill-transfer ms-2 text-warning fa-2x"></i>
+        </button>
+        <hr class="text-white">
+        <a href="transaction" class="list-group-item list-group-item-action text-white"
+          style="background-color:rgb(147, 9, 9); border: none;">Account Statement
+          <i class="fa-solid fa-file-invoice-dollar ms-2 fa-2x text-warning"></i>
+        </a>
+        <hr class="text-white">
+        <button (click)="logout()" type="button" class="list-group-item list-group-item-action text-white"
+          style="background-color:rgb(147, 9, 9); border: none;">Log-out
+          <i class="fa-solid fa-right-from-bracket text-warning fa-2x ms-5"></i>
+        </button>
+        <hr class="text-white">
+        <button (click)="deleteAc()" type="button" class="list-group-item list-group-item-action text-white" style="background-color:rgb(147, 9, 9); border: none;
+               ">Delete Account
+          <i class="fa-solid fa-person-circle-minus text-warning fa-2x ms-5"></i>
+        </button>
+      </div>
+
+      <div class="text-center " style="align-items: center; display: flex; ">
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-9 mt-3 text-center p-5">
+    <h1 class="text-primary text-center p-3 mt-5"> hi {{uname}} enjoy net banking with <span
+        class="text-warning">Union-bank</span></h1>
+
+    <app-delete (onDelete)="deleteAccount($event)" [item]="acno1" (onCancel)="cancelChild()"></app-delete>
+    <p [ngClass]="acno1?'s':''" class="text-center ps-4 p-3 ms-5">Lorem ipsum dolor sit amet consectetur adipisicing
+      elit.
+      Dolore tempore mollitia neque quia sequi, in eveniet <br>magniex reiciendis magnam! Fugit tempore, quas totam
+      maxime voluptatibus in minima corporis quisquam <br> Lorem ipsum dolor sit amet consectetur adipisicing Facilis
+      alias quae excepturi necessitatibus assumenda ipsam br> accusamus, totam ut quasi reprehenderit illo consectetur
+      veniam doloremque iste quas dolores voluptate porro atque?</p>
+
+    <div>
+      <img [ngClass]="acno1?'s':''" src="https://i.postimg.cc/nhPh7g1R/1000-F-244483606-h-Rcppy-IRwao-WVGx-QRN6-MMep-Tu3-Ym-SSUz.jpg" alt="" class="w-75  ps-4 p-5" id="d">
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body text-center" style="background-color:white">
+      <img src="https://i.postimg.cc/kXCf7Vpj/icon-5359553-1280.webp" class="w-50">
+    </div>
+    <div class="p-3 text-white" style="background-color: rgb(147, 9, 9);">
+      <h3>
+        username :{{userData.uname}}
+      </h3><br>
+      <hr>
+      <h3>
+        Account number :{{acno}}
+      </h3>
+      <div class="text-end">
+        <button type="button" class="btn btn-warning  w-100">close</button>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body text-center" style="background-color:white">
+        <form [formGroup]="transaction" action="">
+          <h1>Money Transfer</h1>
+          <input formControlName="acno" type="text" id="inputborder" class="mt-5 form-control fs-5"
+            placeholder="Recipient account number">
+          <div *ngIf="(this.transaction.get('acno')?.errors)&&(this.transaction.get('acno')?.touched)">
+            <p class="text-danger">Must contain numbers only</p>
+          </div>
+          <input formControlName="amnt" type="text" id="inputborder" class="mt-5 form-control fs-5"
+            placeholder="Amount to send">
+          <div *ngIf="(this.transaction.get('amnt')?.errors)&&(this.transaction.get('amnt')?.touched)">
+            <p class="text-danger">Must contain numbers only</p>
+          </div>
+          <input formControlName="psw" type="password" id="inputborder" class="mt-5 form-control fs-5"
+            placeholder="password">
+            <div *ngIf="(this.transaction.get('psw')?.errors)&&(this.transaction.get('psw')?.touched)">
+              <p class="text-danger">Must contain numbers and char</p>
+                </div>
+            <button (click)="moneyTransfer()" type="button" class="form-control text-white" style="background-color: rgb(147, 9, 9);">
+              Transfer
+            </button>
+        </form>
+      </div>
+    
+        
+        <div class="modal-footer" style="background-color:white">
+          <p [ngClass]="alertColor?'s1':'s2'" class="fs-3 text-center">{{alertMessage}}</p>
+          <button type="button" class=" text-white btn btn-secondary" data-bs-dismiss="modal">
+            cancel
+          </button>
+        </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="offcanvas offcanvas-start w-25" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
+  style="background-color: #9acd32; background-image: linear-gradient(gold, white);">
+  <div class="offcanvas-header text-center">
+    <h5 class="offcanvas-title text" id="offcanvasExampleLabel">
+      <h3>Bank Enquiry</h3>
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h3 class="text-black mt-2">
+      Account Number:{{acno}}
+    </h3>
+    <h3 class="text-black mt-4">
+      Current Balance:{{balance}}
+    </h3>
+    <div class="text-center mt-5 pt-5">
+      <img class="w-75" src="https://i.postimg.cc/2jLtV9Sm/istockphoto-628924628-612x612.jpg"
+        style="margin-top: 176px;">
+    </div>
+    <div class="dropdown mt-3">
+
+
+
+    </div>
+  </div>
+</div>

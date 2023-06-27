@@ -1,0 +1,35 @@
+<h2 class="mt-3 mb-3 text-center w-75">Account statement</h2>
+<p class="text-center w-75">{{date | date: 'fullDate'}}</p>
+<div class="text-end w-75 mt-3 mb-3">
+<div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
+  <button (click)="filterPipe('')" type="button" class="btn btn-outline-primary">All</button>
+  <button (click)="filterPipe('DEBIT')" type="button" class="btn btn-outline-primary">Debit</button>
+  <button (click)="filterPipe('CREDIT')" type="button" class="btn btn-outline-primary">Credit</button>
+</div>
+</div>
+<table class="table table-danger table-striped container">
+
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of transactions |filter:searchString:'type'; let j=index">
+  
+      <td>{{j+1}}</td>
+      <td>{{i.type}}</td>
+      <td>{{i.amount}}</td>
+      <td>{{i.date}}</td>
+    </tr>
+  </tbody>
+</table>
+<button class="col-4" style="width: 129px;
+">export as pdf</button>
+<button id="d1" (click)="hpage()">home</button>
+<div class="col-6 container">
+  <img class="w-100" src="https://i.postimg.cc/vBTTkVvm/istockphoto-1310458841-612x612.jpg" alt="">
+</div>
